@@ -1,4 +1,4 @@
-package com.williamnery.convidados.ui
+package com.williamnery.convidados.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
