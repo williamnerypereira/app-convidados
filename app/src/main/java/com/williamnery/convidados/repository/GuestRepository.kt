@@ -14,4 +14,8 @@ class GuestRepository private constructor() {
         }
     }
 
+    fun save() {
+        GuestDataBase()
+    }
+
 }
