@@ -1,21 +1,29 @@
 package com.williamnery.convidados.repository
 
-class GuestRepository private constructor() {
+import android.content.Context
+import com.williamnery.convidados.GuestModel
+
+class GuestRepository private constructor(context: Context) {
+
+    private val guestDataBase = GuestDataBase(context)
 
     // Singleton -> Controla o número de instancias em uma classe
     companion object {
         private lateinit var repository: GuestRepository
 
-        fun getInstance(): GuestRepository {
-            if(!Companion::repository.isInitialized) {
-                repository = GuestRepository()
+        fun getInstance(context: Context): GuestRepository {
+            if(!::repository.isInitialized) {
+                repository = GuestRepository(context)
             }
             return repository
         }
     }
 
-    fun save() {
-        GuestDataBase()
+    fun insert() {
+    }
+
+    fun update() {
+
     }
 
 }
