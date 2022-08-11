@@ -1,4 +1,4 @@
-package com.williamnery.convidados
+package com.williamnery.convidados.model
 
 data class GuestModel(val id: Int, var name: String, var presence: Boolean) {
 
