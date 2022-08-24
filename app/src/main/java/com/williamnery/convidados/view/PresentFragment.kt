@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.williamnery.convidados.constants.DataBaseConstants
-import com.williamnery.convidados.databinding.FragmentAbsentBinding
+import com.williamnery.convidados.databinding.FragmentPresentBinding
 import com.williamnery.convidados.view.adapter.GuestsAdapter
 import com.williamnery.convidados.view.listener.OnGuestListener
 import com.williamnery.convidados.viewmodel.GuestsViewModel
 
-class AbsentFragment : Fragment() {
+class PresentFragment : Fragment() {
 
-    private var _binding: FragmentAbsentBinding? = null
+    private var _binding: FragmentPresentBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: GuestsViewModel
@@ -30,7 +30,7 @@ class AbsentFragment : Fragment() {
         viewModel =
             ViewModelProvider(this).get(GuestsViewModel::class.java)
 
-        _binding = FragmentAbsentBinding.inflate(inflater, container, false)
+        _binding = FragmentPresentBinding.inflate(inflater, container, false)
 
         // Layout
         binding.recyclerGuests.layoutManager = LinearLayoutManager(context)
@@ -49,7 +49,7 @@ class AbsentFragment : Fragment() {
 
             override fun onDelete(id: Int) {
                 viewModel.delete(id)
-                viewModel.getAbsent()
+                viewModel.getPresent()
             }
 
         }
@@ -63,8 +63,9 @@ class AbsentFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getAbsent()
+        viewModel.getPresent()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
