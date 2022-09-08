@@ -15,14 +15,16 @@ import com.williamnery.convidados.model.GuestModel
 @Database(entities = [GuestModel::class], version = 1)
 abstract class GuestDataBase() : RoomDatabase() {
 
+    abstract fun guestDAO(): GuestDAO
+
     companion object {
         private lateinit var INSTANCE: GuestDataBase
 
         fun getDataBase(context: Context): GuestDataBase {
-            if (!::INSTANCE.isAbstract) {
+            if (!::INSTANCE.isInitialized) {
                 synchronized(GuestDataBase::class) {
                     INSTANCE = Room.databaseBuilder(context, GuestDataBase::class.java, "guestdb")
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations()
                         .allowMainThreadQueries()
                         .build()
                 }
@@ -37,20 +39,4 @@ abstract class GuestDataBase() : RoomDatabase() {
 
         }
     }
-
-    /*companion object {
-        private const val NAME = "guestdb"
-        private const val VERSION = 1
-    }
-
-    override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE " +
-                        DataBaseConstants.GUEST.TABLE_NAME + " (" +
-                        DataBaseConstants.GUEST.COLUMNS.ID + " integer PRIMARY KEY AUTOINCREMENT, " +
-                        DataBaseConstants.GUEST.COLUMNS.NAME + " text, " +
-                        DataBaseConstants.GUEST.COLUMNS.PRESENCE + " integer);")
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase, oldVerison: Int, newVerison: Int) {}*/
-
 }
